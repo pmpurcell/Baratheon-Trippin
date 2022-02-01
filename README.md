@@ -1,6 +1,6 @@
 # Baratheon-Trippin
 
-## Technical ERD
+## Technical Flow Chart
 https://docs.google.com/presentation/d/1mRxIMTutSxqI3QY5nGP5AwuiEfDrhJX9w1MKueJ5eSY/edit#slide=id.p
 
 ## DBDiagram
