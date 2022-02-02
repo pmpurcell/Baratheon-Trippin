@@ -34,7 +34,7 @@ namespace Baratheon_Trippin
                         answer = Console.ReadLine();
                         break;
                     case "5":
-                        System.Environment.Exit(1);
+                        System.Environment.Exit(0);
                         break;
                 }
             }
