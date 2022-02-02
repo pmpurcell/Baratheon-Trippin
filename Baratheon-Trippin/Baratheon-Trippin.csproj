@@ -6,8 +6,4 @@
     <RootNamespace>Baratheon_Trippin</RootNamespace>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="NewFolder\" />
-  </ItemGroup>
-
 </Project>
