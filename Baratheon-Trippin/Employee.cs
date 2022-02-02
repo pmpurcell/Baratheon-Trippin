@@ -8,16 +8,24 @@ using System.Threading.Tasks;
 
 namespace Baratheon_Trippin
 {
-    internal class Employee
-    {
-        public enum Title
-        {
-            DistMgr = 0,
-            StoreMgr = 1,
-            AstStrMgr = 2,
-            Associate = 3,
-        }
+	public enum Title
+	{
+		DistMgr = 0,
+		StoreMgr = 1,
+		AstStrMgr = 2,
+		Associate = 3,
+	}
+	internal class Employee
+	{
+		public Employee(Title title, string name, string sales)
+		{
+			Title = title;
+			Name = name;
+			Sales = sales;
+		}
 
-        public 
-    }
+		public string Name { get; set; }
+		public string Sales { get; set; }
+		public Title @Title { get; set; }
+	}
 }
