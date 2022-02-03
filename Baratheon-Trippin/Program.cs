@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Baratheon_Trippin.Models;
+using System;
 
 namespace Baratheon_Trippin
 {
@@ -6,8 +7,9 @@ namespace Baratheon_Trippin
     {
         static void Main(string[] args)
         {
+            var dataStore = new DataStore();
             ViewMenu();
-                string answer = Console.ReadLine();
+            string answer = Console.ReadLine();
             while (answer != null)
             {
 
@@ -16,29 +18,48 @@ namespace Baratheon_Trippin
                     case "1":
                         Console.WriteLine("You pressed 1 -- Enter District Sales");
                         ViewMenu();
-                        answer = Console.ReadLine();
                         break;
                     case "2":
                         Console.WriteLine("You pressed 2 -- Generate District Report");
                         ViewMenu();
-                        answer = Console.ReadLine();
                         break;
                     case "3":
                         Console.WriteLine("You pressed 3 -- Add New Employee");
-                        ViewMenu();
-                        answer = Console.ReadLine();
+                        ViewEmployeeMenu(dataStore);
                         break;
                     case "4":
                         Console.WriteLine("You pressed 4 -- Add a Store/District");
                         ViewMenu();
-                        answer = Console.ReadLine();
                         break;
                     case "5":
                         System.Environment.Exit(0);
                         break;
                 }
+                ViewMenu();
+                answer = Console.ReadLine();
             }
-            }
+        }
+
+        private static void ViewEmployeeMenu(DataStore dataStore)
+        {
+            Console.WriteLine(@"What is the Employee's title?
+0. District Manager
+1. Store Manager
+2. Assistant Manager
+3. Associate");
+            var choice = Console.ReadLine();
+            var title = (Title)Enum.Parse(typeof(Title), choice);
+            Console.WriteLine(@"------------------");
+            Console.WriteLine(@"What is the Employee's name?");
+            var name = Console.ReadLine();
+            Console.WriteLine(@"------------------");
+            Console.WriteLine(@"How much did the Employee earn for the company?");
+            var sales = Console.ReadLine();
+
+            var employee = new Employee(title, name, sales);
+            dataStore.Employees.Add(employee);
+            Console.WriteLine($"Added new employee: {employee.Name}");
+        }
 
         private static void ViewMenu()
         {
@@ -54,4 +75,4 @@ Select your option:
 ___________________________");
         }
     }
-    }
+}
