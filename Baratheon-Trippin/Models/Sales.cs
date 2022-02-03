@@ -17,11 +17,18 @@ namespace Baratheon_Trippin
             Console.WriteLine("Enter Revenue Yearly");
             var revyearly = Console.ReadLine();
 
+            var revsuccess = int.TryParse(revyearly, out var revint);
+            var revquarterly = revint / 4;
+            var gassuccess = int.TryParse(gasyearly, out var gasint);
+            var gasquarterly = gasint / 4;
+
             var output = $@"Sales Report
 ____________________________
 Store: {storenumber}
 Gas Yearly: {gasyearly}
+Gas Quarterly: {gasquarterly}
 Revenue Yearly: {revyearly}
+Revenue Quarterly: {revquarterly};
 ____________________________";
 
             Console.WriteLine(output);
