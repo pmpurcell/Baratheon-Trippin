@@ -8,6 +8,7 @@ namespace Baratheon_Trippin
         static void Main(string[] args)
         {
             var dataStore = new DataStore();
+            var sales = new Sales();
             ViewMenu();
             string answer = Console.ReadLine();
             while (answer != null)
@@ -17,11 +18,10 @@ namespace Baratheon_Trippin
                 {
                     case "1":
                         Console.WriteLine("You pressed 1 -- Enter District Sales");
-                        ViewMenu();
+                        sales.EnterSales();
                         break;
                     case "2":
                         Console.WriteLine("You pressed 2 -- Generate District Report");
-                        ViewMenu();
                         break;
                     case "3":
                         Console.WriteLine("You pressed 3 -- Add New Employee");
