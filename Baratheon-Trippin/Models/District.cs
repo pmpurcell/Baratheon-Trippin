@@ -8,26 +8,29 @@ namespace Baratheon_Trippin.Models
 {
     internal class District
     {
-        public District(string districtName, string managerName)
-        {
-            _districtName = districtName;
-            _districtManager = districtName;
-        }
 
-        private string _districtName;
-        private string _districtManager;
+        public string DistrictName { get; set; }
+        private string DistrictManager { get; set; }
 
 
-        public List<int> DistrictDetails { get; set; }
+        public Dictionary<string, List<int>> DistrictDetails { get; set; }
 
 
-        public void addNewDistrict(int store)
+        public void addNewDistrict(string name, null )
         {
             if (DistrictDetails == null)
             {
-                DistrictDetails = new List<int>();
+                DistrictDetails = new Dictionary<string, List<int>>();
             }
-            DistrictDetails.Add(store);
+            DistrictDetails.Add(name, null);
+        }
+
+       // Method to intake info from user once Add District is selected
+       public void DistrictDetailsPrint()
+        {
+            Console.WriteLine("Please input new districts name:");
+            DistrictName = Console.ReadLine();
+            //addNewDistrict(DistrictName);
         }
 
     }
