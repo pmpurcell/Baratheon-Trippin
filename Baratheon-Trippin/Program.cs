@@ -29,6 +29,7 @@ namespace Baratheon_Trippin
                         break;
                     case "4":
                         Console.WriteLine("You pressed 4 -- Add a Store/District");
+                        CreateNewStore();
                         break;
                     case "5":
                         System.Environment.Exit(0);
@@ -72,6 +73,23 @@ Select your option:
 4. Add a Store/District
 5. Exit
 ___________________________");
+        }
+        private static Store CreateNewStore()
+        {
+            var question1 = "Enter New Store Number:";
+            Console.WriteLine(question1);
+            var storeNum = Console.ReadLine();
+            var parsedStoreNum = int.Parse(storeNum);
+
+            var gasYearly = 0;
+            var gasQtr = 0;
+            var retailYearly = 0;
+            var retailQtr = 0;
+
+            var newStore = new Store(parsedStoreNum, gasYearly, gasQtr, retailYearly, retailQtr);
+            Console.WriteLine($"You have added store # {newStore.StoreNum}");
+            return newStore;
+
         }
     }
 }
