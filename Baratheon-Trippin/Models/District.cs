@@ -16,7 +16,7 @@ namespace Baratheon_Trippin.Models
         public Dictionary<string, List<int>> DistrictDetails { get; set; }
 
 
-        public void addNewDistrict(string name, null )
+        public void addNewDistrict(string name, List<int> )
         {
             if (DistrictDetails == null)
             {
