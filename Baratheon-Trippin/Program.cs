@@ -1,5 +1,5 @@
-﻿using Baratheon_Trippin.Models;
-using System;
+﻿using System;
+using Baratheon_Trippin.Models;
 
 namespace Baratheon_Trippin
 {
@@ -9,8 +9,10 @@ namespace Baratheon_Trippin
         {
             var dataStore = new DataStore();
             var sales = new Sales();
+            var district = new District();
             ViewMenu();
             string answer = Console.ReadLine();
+            string answerTwo;
             while (answer != null)
             {
 
@@ -28,9 +30,31 @@ namespace Baratheon_Trippin
                         ViewEmployeeMenu(dataStore);
                         break;
                     case "4":
-                        Console.Clear();
-                        Console.WriteLine("You pressed 4 -- Add a Store/District");
-                        CreateNewStore();
+                        Console.WriteLine("You pressed  -- Add New District/Store");
+                        ViewSubMenu();
+                        answerTwo = Console.ReadLine();
+                        while (answerTwo != null)
+                        {
+
+                        switch (answerTwo)
+                        {
+                            case "1":
+                                    Console.Clear();
+                                    Console.WriteLine("You pressed 1 -- Add a District");
+                                    district.DistrictMenuPrint();
+                                    answerTwo = null;
+                                break;
+                            case "2":
+                                    Console.Clear();
+                                    Console.WriteLine("You pressed 2 -- Add a Store");
+                                    CreateNewStore();
+                                    answerTwo = null;
+                                    break;
+                            case "3":
+                                answerTwo = null;
+                                break;
+                        }
+                        }
                         break;
                     case "5":
                         System.Environment.Exit(0);
@@ -76,36 +100,36 @@ Select your option:
 5. Exit
 ___________________________");
         }
-        private static Store CreateNewStore()
+
+        private static void ViewSubMenu()
         {
-            var question1 = "Enter New Store Number:";
-            Console.WriteLine(question1);
-            var storeNum = Console.ReadLine();
-            var parsedStoreNum = int.Parse(storeNum);
+            Console.WriteLine(@"Which would you like to add?
+___________________________
+Select your option:
+1. Add New District
+2. Add New Store
+3. Exit to Main Menu
+___________________________");
+        }
 
-            var gasYearly = 0;
-            var gasQtr = 0;
-            var retailYearly = 0;
-            var retailQtr = 0;
-
-            var newStore = new Store(parsedStoreNum, gasYearly, gasQtr, retailYearly, retailQtr);
-            Console.WriteLine($"You have added store # {newStore.StoreNum}");
-
-            returnToMenu();
-            return newStore;
-
-
-            static void returnToMenu()
+            private static Store CreateNewStore()
             {
-                Console.WriteLine($"Press any key to return to main menu.");
-                ConsoleKeyInfo keyInfo;
+                var question1 = "Enter New Store Number:";
+                Console.WriteLine(question1);
+                var storeNum = Console.ReadLine();
+                var parsedStoreNum = int.Parse(storeNum);
 
-                do
-                {
-                    keyInfo = Console.ReadKey();
-                    ViewMenu();
-                } while (keyInfo.Key != ConsoleKey.Escape);
+                var gasYearly = 0;
+                var gasQtr = 0;
+                var retailYearly = 0;
+                var retailQtr = 0;
+
+                var newStore = new Store(parsedStoreNum, gasYearly, gasQtr, retailYearly, retailQtr);
+                Console.WriteLine($"You have added store # {newStore.StoreNum}");
+
+                return newStore;
+
+
             }
         }
     }
-}
