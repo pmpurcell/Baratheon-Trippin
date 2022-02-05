@@ -33,7 +33,7 @@ namespace Baratheon_Trippin.Models
             Console.WriteLine("Please input new districts name:");
             DistrictName = Console.ReadLine();
             AddNewDistrict(DistrictName);
-            Console.WriteLine(Districts.Count.ToString());
+            Console.WriteLine($"You have added a new District: {DistrictName}");
         }
 
     }

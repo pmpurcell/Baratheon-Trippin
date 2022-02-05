@@ -45,10 +45,11 @@ namespace Baratheon_Trippin
                                     answerTwo = null;
                                 break;
                             case "2":
-                                Console.WriteLine("You pressed 2 -- Add New Store");
-                                answer = Console.ReadLine();
-                                // Need to add method for creating a new store here.
-                                break;
+                                    Console.Clear();
+                                    Console.WriteLine("You pressed 4 -- Add a Store/District");
+                                    CreateNewStore();
+                                    answerTwo = null;
+                                    break;
                             case "3":
                                 answerTwo = null;
                                 break;
@@ -87,6 +88,7 @@ namespace Baratheon_Trippin
 
         private static void ViewMenu()
         {
+            Console.Clear();
             Console.WriteLine(@"Baratheon QuickTrip
 'Ours is the fury!'
 ___________________________
@@ -109,5 +111,37 @@ Select your option:
 3. Exit to Main Menu
 ___________________________");
         }
+
+            private static Store CreateNewStore()
+            {
+                var question1 = "Enter New Store Number:";
+                Console.WriteLine(question1);
+                var storeNum = Console.ReadLine();
+                var parsedStoreNum = int.Parse(storeNum);
+
+                var gasYearly = 0;
+                var gasQtr = 0;
+                var retailYearly = 0;
+                var retailQtr = 0;
+
+                var newStore = new Store(parsedStoreNum, gasYearly, gasQtr, retailYearly, retailQtr);
+                Console.WriteLine($"You have added store # {newStore.StoreNum}");
+
+                returnToMenu();
+                return newStore;
+
+
+                static void returnToMenu()
+                {
+                    Console.WriteLine($"Press any key to return to main menu.");
+                    ConsoleKeyInfo keyInfo;
+
+                    do
+                    {
+                        keyInfo = Console.ReadKey();
+                        //ViewMenu();
+                    } while (keyInfo.Key != ConsoleKey.Escape);
+                }
+            }
+        }
     }
-}
