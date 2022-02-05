@@ -28,6 +28,7 @@ namespace Baratheon_Trippin
                         ViewEmployeeMenu(dataStore);
                         break;
                     case "4":
+                        Console.Clear();
                         Console.WriteLine("You pressed 4 -- Add a Store/District");
                         CreateNewStore();
                         break;
@@ -63,6 +64,7 @@ namespace Baratheon_Trippin
 
         private static void ViewMenu()
         {
+            Console.Clear();
             Console.WriteLine(@"Baratheon QuickTrip
 'Ours is the fury!'
 ___________________________
@@ -88,8 +90,22 @@ ___________________________");
 
             var newStore = new Store(parsedStoreNum, gasYearly, gasQtr, retailYearly, retailQtr);
             Console.WriteLine($"You have added store # {newStore.StoreNum}");
+
+            returnToMenu();
             return newStore;
 
+
+            static void returnToMenu()
+            {
+                Console.WriteLine($"Press any key to return to main menu.");
+                ConsoleKeyInfo keyInfo;
+
+                do
+                {
+                    keyInfo = Console.ReadKey();
+                    ViewMenu();
+                } while (keyInfo.Key != ConsoleKey.Escape);
+            }
         }
     }
 }
