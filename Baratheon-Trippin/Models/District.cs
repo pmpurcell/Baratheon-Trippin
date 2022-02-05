@@ -13,13 +13,11 @@ namespace Baratheon_Trippin.Models
         private string DistrictManager { get; set; }
 
         public List<string> Districts { get; set; }
-        // public Dictionary<string, List<int>> DistrictDetails { get; set; }
+         public Dictionary<string, int> DistrictDetails { get; set; }
 
-
+        // Method to add District to List
         public void AddNewDistrict(string name)
         {
-            //var storName = name;
-            //var title = (Title)Enum.Parse(typeof(Title),
             if (Districts == null)
             {
                 Districts = new List<string>();
@@ -28,7 +26,7 @@ namespace Baratheon_Trippin.Models
         }
 
        // Method to intake info from user once Add District is selected
-       public void DistrictDetailsPrint()
+       public void DistrictMenuPrint()
         {
             Console.WriteLine("Please input new districts name:");
             DistrictName = Console.ReadLine();
@@ -36,5 +34,23 @@ namespace Baratheon_Trippin.Models
             Console.WriteLine($"You have added a new District: {DistrictName}");
         }
 
+        // Method for loop to print all districts
+        public void PrintCurrentDistricts()
+        {
+            for (int i = 0; i < Districts.Count; i++)
+            {
+                Console.WriteLine($"{i}) {Districts[i]}");
+            }
+        }
+
+        // Method to add store to district dictionary
+        public void AddStoreToDistrict(string name, int store)
+        {
+            if (DistrictDetails == null)
+            {
+                DistrictDetails = new Dictionary<string, int>();
+            }
+            DistrictDetails.Add(DistrictName, store);
+        }
     }
 }

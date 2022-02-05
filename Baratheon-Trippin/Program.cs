@@ -10,11 +10,9 @@ namespace Baratheon_Trippin
             var dataStore = new DataStore();
             var sales = new Sales();
             var district = new District();
-            //var store = new Store(); // prepped for when needed.           
             ViewMenu();
             string answer = Console.ReadLine();
             string answerTwo;
-            string newDistrictName;
             while (answer != null)
             {
 
@@ -41,12 +39,14 @@ namespace Baratheon_Trippin
                         switch (answerTwo)
                         {
                             case "1":
-                                district.DistrictDetailsPrint();
+                                    Console.Clear();
+                                    Console.WriteLine("You pressed 1 -- Add a District");
+                                    district.DistrictMenuPrint();
                                     answerTwo = null;
                                 break;
                             case "2":
                                     Console.Clear();
-                                    Console.WriteLine("You pressed 4 -- Add a Store/District");
+                                    Console.WriteLine("You pressed 2 -- Add a Store");
                                     CreateNewStore();
                                     answerTwo = null;
                                     break;
@@ -127,21 +127,9 @@ ___________________________");
                 var newStore = new Store(parsedStoreNum, gasYearly, gasQtr, retailYearly, retailQtr);
                 Console.WriteLine($"You have added store # {newStore.StoreNum}");
 
-                returnToMenu();
                 return newStore;
 
 
-                static void returnToMenu()
-                {
-                    Console.WriteLine($"Press any key to return to main menu.");
-                    ConsoleKeyInfo keyInfo;
-
-                    do
-                    {
-                        keyInfo = Console.ReadKey();
-                        //ViewMenu();
-                    } while (keyInfo.Key != ConsoleKey.Escape);
-                }
             }
         }
     }
