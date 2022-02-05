@@ -12,17 +12,19 @@ namespace Baratheon_Trippin.Models
         public string DistrictName { get; set; }
         private string DistrictManager { get; set; }
 
+        public List<string> Districts { get; set; }
+        // public Dictionary<string, List<int>> DistrictDetails { get; set; }
 
-        public Dictionary<string, List<int>> DistrictDetails { get; set; }
 
-
-        public void addNewDistrict(string name, List<int> )
+        public void AddNewDistrict(string name)
         {
-            if (DistrictDetails == null)
+            //var storName = name;
+            //var title = (Title)Enum.Parse(typeof(Title),
+            if (Districts == null)
             {
-                DistrictDetails = new Dictionary<string, List<int>>();
+                Districts = new List<string>();
             }
-            DistrictDetails.Add(name, null);
+            Districts.Add(name);
         }
 
        // Method to intake info from user once Add District is selected
@@ -30,7 +32,8 @@ namespace Baratheon_Trippin.Models
         {
             Console.WriteLine("Please input new districts name:");
             DistrictName = Console.ReadLine();
-            //addNewDistrict(DistrictName);
+            AddNewDistrict(DistrictName);
+            Console.WriteLine(Districts.Count.ToString());
         }
 
     }

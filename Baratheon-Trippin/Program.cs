@@ -1,5 +1,5 @@
-﻿using Baratheon_Trippin.Models;
-using System;
+﻿using System;
+using Baratheon_Trippin.Models;
 
 namespace Baratheon_Trippin
 {
@@ -8,8 +8,13 @@ namespace Baratheon_Trippin
         static void Main(string[] args)
         {
             var dataStore = new DataStore();
+            var sales = new Sales();
+            var district = new District();
+            //var store = new Store(); // prepped for when needed.           
             ViewMenu();
             string answer = Console.ReadLine();
+            string answerTwo;
+            string newDistrictName;
             while (answer != null)
             {
 
@@ -17,35 +22,38 @@ namespace Baratheon_Trippin
                 {
                     case "1":
                         Console.WriteLine("You pressed 1 -- Enter District Sales");
-                        ViewMenu();
+                        sales.EnterSales();
                         break;
                     case "2":
                         Console.WriteLine("You pressed 2 -- Generate District Report");
-                        ViewMenu();
                         break;
                     case "3":
                         Console.WriteLine("You pressed 3 -- Add New Employee");
                         ViewEmployeeMenu(dataStore);
                         break;
                     case "4":
+                        Console.WriteLine("You pressed  -- Add New District/Store");
                         ViewSubMenu();
-                        // Need to add second switch case to deleniate between adding a Store or District
-                        switch (answer)
+                        answerTwo = Console.ReadLine();
+                        while (answerTwo != null)
+                        {
+
+                        switch (answerTwo)
+                        {
                             case "1":
-                                answer =  Console.ReadLine()
-                                addNewDistrict(answer);
+                                district.DistrictDetailsPrint();
+                                    answerTwo = null;
                                 break;
-                             case "2":
+                            case "2":
                                 Console.WriteLine("You pressed 2 -- Add New Store");
-                                ViewMenu();
                                 answer = Console.ReadLine();
+                                // Need to add method for creating a new store here.
                                 break;
                             case "3":
-                                Console.WriteLine("You pressed 2 -- Add New Store");
-                                ViewMenu();
+                                answerTwo = null;
                                 break;
-                        Console.WriteLine("You pressed 4 -- Add a Store/District");
-                        ViewMenu();
+                        }
+                        }
                         break;
                     case "5":
                         System.Environment.Exit(0);
@@ -91,15 +99,14 @@ Select your option:
 ___________________________");
         }
 
-        // create a submenu for Add Store or District
         private static void ViewSubMenu()
         {
-            Console.WriteLine(@"Baratheon QuickTrip
-'Ours is the fury!'
+            Console.WriteLine(@"Which would you like to add?
 ___________________________
 Select your option:
-1. Add a District
-2. Add a Store
+1. Add New District
+2. Add New Store
+3. Exit to Main Menu
 ___________________________");
         }
     }
