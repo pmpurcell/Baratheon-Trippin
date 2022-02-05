@@ -46,8 +46,8 @@ namespace Baratheon_Trippin
                                 break;
                             case "2":
                                     Console.Clear();
-                                    Console.WriteLine("You pressed 2 -- Add a Store");
-                                    CreateNewStore();
+                                    Console.WriteLine("You pressed 2 -- Add a Store");                                    
+                                    CreateNewStore(district);
                                     answerTwo = null;
                                     break;
                             case "3":
@@ -88,7 +88,6 @@ namespace Baratheon_Trippin
 
         private static void ViewMenu()
         {
-            Console.Clear();
             Console.WriteLine(@"Baratheon QuickTrip
 'Ours is the fury!'
 ___________________________
@@ -112,24 +111,39 @@ Select your option:
 ___________________________");
         }
 
-            private static Store CreateNewStore()
+            public static Store CreateNewStore(District district)
             {
+            Console.Clear();
+            if (district.Districts == null)
+            {
+
+                Console.WriteLine("Please input district first.");
+                return null;
+
+            }
+            else
+            {
+                
                 var question1 = "Enter New Store Number:";
                 Console.WriteLine(question1);
                 var storeNum = Console.ReadLine();
                 var parsedStoreNum = int.Parse(storeNum);
-
+                Console.WriteLine("Please Type District name you wish to add this store too");
+                district.PrintCurrentDistricts();
+                var districtName = Console.ReadLine();
                 var gasYearly = 0;
                 var gasQtr = 0;
                 var retailYearly = 0;
                 var retailQtr = 0;
 
                 var newStore = new Store(parsedStoreNum, gasYearly, gasQtr, retailYearly, retailQtr);
+                district.AddStoreToDistrict(districtName, newStore);
                 Console.WriteLine($"You have added store # {newStore.StoreNum}");
+                district.PrintDistrictDetails();
 
                 return newStore;
-
-
             }
+
+        }
         }
     }
