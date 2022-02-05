@@ -12,16 +12,12 @@ namespace Baratheon_Trippin.Models
         public string DistrictName { get; set; }
         private string DistrictManager { get; set; }
 
-        public List<string> Districts { get; set; }
-         public Dictionary<string, int> DistrictDetails { get; set; }
+        public List<string> Districts { get; set; }  = new List<string>();
+         public Dictionary<string, List<Store>> DistrictDetails { get; set; } = new Dictionary<string, List<Store>>();
 
         // Method to add District to List
         public void AddNewDistrict(string name)
         {
-            if (Districts == null)
-            {
-                Districts = new List<string>();
-            }
             Districts.Add(name);
         }
 
@@ -35,22 +31,37 @@ namespace Baratheon_Trippin.Models
         }
 
         // Method for loop to print all districts
+
         public void PrintCurrentDistricts()
         {
-            for (int i = 0; i < Districts.Count; i++)
-            {
-                Console.WriteLine($"{i}) {Districts[i]}");
-            }
+            //if (Districts != null)
+            //{
+                for (int i = 0; i < Districts.Count; i++)
+                {
+                    Console.WriteLine($"{i + 1}) {Districts[i]}");
+                }
+
         }
 
         // Method to add store to district dictionary
-        public void AddStoreToDistrict(string name, int store)
+        public void AddStoreToDistrict(string name, Store store)
         {
-            if (DistrictDetails == null)
+            if (DistrictDetails.ContainsKey(name))
             {
-                DistrictDetails = new Dictionary<string, int>();
+                DistrictDetails[name].Add(store);
             }
-            DistrictDetails.Add(DistrictName, store);
+            else
+            {
+                DistrictDetails.Add(name, new List<Store> { store });
+            }
+        }
+
+        public void PrintDistrictDetails()
+        {
+            foreach (string name in DistrictDetails.Keys)
+            {
+                Console.WriteLine($"You have added the store to District: {name}.");
+            }
         }
     }
 }

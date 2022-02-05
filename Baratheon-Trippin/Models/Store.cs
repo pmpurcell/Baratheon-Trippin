@@ -23,6 +23,20 @@ public class Store
 
 	public List<Store> Stores { get; set; } = new List<Store>();
 
+	public void PrintCurrentDistricts(List<string> Districts)
+	{
+		if (Districts != null)
+		{
+			for (int i = 0; i < Districts.Count; i++)
+			{
+				Console.WriteLine($"{i}) {Districts[i]}");
+			}
+		}
+		else
+		{
+			Console.WriteLine("Please add a District first.");
+		}
 
+	}
 }
 
